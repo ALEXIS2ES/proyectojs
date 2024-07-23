@@ -5,6 +5,7 @@ const usuario = {
 }
 
 const pedido = []
+let costoPedido = 0
 
 const mostrarMenu = () => {
     console.log(`CODIGO - NOMBRE PRODUCTO - COSTO`)
@@ -28,3 +29,12 @@ const pedirProducto = cod => {
 }
 
 const verPedido = () => pedido
+
+const calcularCosto = () =>{
+    let costo = 0
+    for (producto of pedido){
+        costo += producto.costo
+    }
+    costoPedido = costo
+    return costoPedido
+}
