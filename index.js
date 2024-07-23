@@ -1,32 +1,30 @@
-const productos = [
-    {
-        nombre: "hamburguesa simple",
-        costo: 20,
-        codigo: "h100"
-    },
-    {
-        nombre: "hamburguesa doble",
-        costo: 30,
-        codigo: "h200"
-    },
-    {
-        nombre: "papas fritas",
-        costo: 8,
-        codigo: "p100"
-    },
-    {
-        nombre: "refresco personal",
-        costo: 6,
-        codigo: "r100"
-    }
-    ]
+const usuario = {
+    nombre: "alexis",
+    edad: 28,
+    deuda: 0
+}
+
+const pedido = []
 
 const mostrarMenu = () => {
     console.log(`CODIGO - NOMBRE PRODUCTO - COSTO`)
-    //productos.forEach(producto => console.log(`${producto.codigo} - ${producto.nombre} - ${producto.costo}`))
+    // productos.forEach(producto => console.log(`${producto.codigo} - ${producto.nombre} - ${producto.costo}`))
 
     for(let producto of productos){
         console.log(`${producto.codigo} - ${producto.nombre} - ${producto.costo}`)
     }
 }
 
+const pedirProducto = cod => {
+    // si solo es una linea funciona
+    if (!cod)return "Ingrese Un Codigo valido"
+
+    const productoEncontrado = productos.find(producto => producto.codigo === cod)
+    if(!productoEncontrado) return "El producto no existe"
+
+    pedido.push(productoEncontrado)
+    console.log("Su producto ha sido agregado a su pedido. su pedido es: ")
+    return verPedido
+}
+
+const verPedido = () => pedido
