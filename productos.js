@@ -1,4 +1,7 @@
 const productos = [
+    /**
+     * Listado de todos los productos del menu del restaurante
+     */
     {
         nombre: "hamburguesa simple",
         costo: 20,

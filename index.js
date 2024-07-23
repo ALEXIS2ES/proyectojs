@@ -1,23 +1,23 @@
+/**
+ * logica para crear pedidos y cobrar los pedidos del usuario
+ */
 const usuario = {
     nombre: "alexis",
-    edad: 28,
+    edad: 30,
     deuda: 0
 }
 
-const pedido = []
+let pedido = []
 let costoPedido = 0
-
+//lista todos los productos del menu en un formato amigable
 const mostrarMenu = () => {
     console.log(`CODIGO - NOMBRE PRODUCTO - COSTO`)
-    // productos.forEach(producto => console.log(`${producto.codigo} - ${producto.nombre} - ${producto.costo}`))
-
     for(let producto of productos){
         console.log(`${producto.codigo} - ${producto.nombre} - ${producto.costo}`)
     }
 }
 
 const pedirProducto = cod => {
-    // si solo es una linea funciona
     if (!cod)return "Ingrese Un Codigo valido"
 
     const productoEncontrado = productos.find(producto => producto.codigo === cod)
@@ -37,4 +37,32 @@ const calcularCosto = () =>{
     }
     costoPedido = costo
     return costoPedido
+}
+
+const finalizarPedido = () => {
+    calcularCosto()
+    usuario.deuda = costoPedido
+
+    pedido = []
+    costoPedido = 0
+
+    return `${usuario.nombre}, Deves pagar ${usuario.deuda} dolares.`
+}
+//funcion que permite pagar todo un pedido y entrega cambio si es necesario
+const pagarPedido = montoEntregado => {
+    if(typeof montoEntregado === "number"){
+        if (montoEntregado < usuario.deuda){
+            return `No te alcansa para pagar tu pedido.`
+        }else if(montoEntregado === usuario.deuda){
+            usuario.deuda = 0
+            return `Tu pedido ha sido pagado.`
+        }else{
+            console.log(`Tu pedido ha sido pagado y tu cambio es de ${montoEntregado -usuario.deuda}.`)
+            usuario.deuda = 0
+            return  `deuda pagada`
+        }
+    }else{
+        return "dato ingresado de forma erronea"
+    }
+    
 }
